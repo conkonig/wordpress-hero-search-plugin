@@ -1,0 +1,16 @@
+{
+    "video_src": "/wp-content/uploads/2025/11/amsterdam-boat-cruise-720-30.mp4",
+    "video_poster": "/wp-content/uploads/2025/11/Openboat.jpg",
+    "taxonomy": "activities",
+    "search_fallback_url": "/?s=%query%&wpessid=1367",
+    "searchbar_placeholder": "Search activities...",
+    "search_button_text": "Search",
+    "searchable_items": [
+        { "slug": "boat-tours-and-cruises", "title": "Boat Tours & Cruises" },
+        { "slug": "amsterdam-light-festival", "title": "Amsterdam Light Festival" },
+        { "slug": "adventures-activities", "title": "Daytime / Group Adventures" },
+        { "slug": "dinners", "title": "Dinners" },
+        { "slug": "shows", "title": "Shows" },
+        { "slug": "tours-workshops-and-barcrawls", "title": "Tours Workshops & Bar Crawls" }
+    ]
+}
