@@ -1,0 +1,130 @@
+/* --- Cover + Background Video Styling --- */
+
+.hero-hero-cover {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-hero-cover .hero-video-wrapper,
+.hero-hero-cover .hero-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-hero-cover .hero-bg-video {
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.hero-hero-cover .wp-block-cover__inner-container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-hero-cover.has-video-loaded .wp-block-cover__image-background {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.hero-hero-cover.has-video-loaded .hero-bg-video {
+    opacity: 1;
+}
+
+/* --- Hero Search UI --- */
+
+.aag-hero-search {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.aag-hero-search-form {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+}
+
+.aag-hero-input {
+    width: 100%;
+    height: 72px;
+    border-radius: 999px !important; 
+    border: none;
+    padding: 0 26px;
+    font-size: 1rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+
+.aag-hero-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.7);
+}
+
+.aag-hero-button {
+    align-self: center;
+    padding: 29px 42px;
+    border-radius: 999px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #e64242;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    margin-left: -92px;
+}
+
+.aag-hero-button:hover {
+    filter: brightness(1.05);
+}
+
+.aag-autocomplete-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0px !important;
+    list-style: none;
+    padding: 0 !important;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.25);
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 999;
+}
+
+.aag-autocomplete-item {
+    padding: 10px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.aag-autocomplete-item.is-active {
+    background: #f0f0f0;
+}
+
+.aag-autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+.aag-autocomplete-item:hover {
+    background: #f7f7f7;
+}
+
+@media (max-width: 768px) {
+    .aag-hero-input {
+        height: 64px;
+        font-size: 1rem;
+    }
+    .aag-hero-button {
+        width: unset;
+        font-size: 1rem;
+        padding: 26px 25px;
+    }
+}
