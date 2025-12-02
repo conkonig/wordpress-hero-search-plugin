@@ -5,6 +5,7 @@
     "search_fallback_url": "/?s=%query%&wpessid=1367",
     "searchbar_placeholder": "Search activities...",
     "search_button_text": "Search",
+    "rendering_page_id": 2163,
     "searchable_items": [
         { "slug": "boat-tours-and-cruises", "title": "Boat Tours & Cruises" },
         { "slug": "amsterdam-light-festival", "title": "Amsterdam Light Festival" },

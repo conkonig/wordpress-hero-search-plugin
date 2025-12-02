@@ -3,7 +3,7 @@
 /**
  * Plugin Name: AAG Hero Search
  * Description: Reusable Alpine.js hero search + background video component.
- * Version: 1.0.1
+ * Version: 1.0.2
  */
 define('AAG_HERO_PATH', __DIR__);
 define('AAG_HERO_URL', plugin_dir_url(__FILE__));
@@ -36,10 +36,12 @@ require __DIR__ . '/templates/search-component.php';
 
 /** Enqueue assets only on the front page */
 add_action('wp_enqueue_scripts', function () {
-    if (!is_front_page())
-        return;
-
     $cfg = aag_hero_config();
+
+    error_log(print_r($cfg['rendering_page_id'], true));
+
+    if (!is_page($cfg['rendering_page_id']))
+            return;
 
     wp_enqueue_style(
         'aag-hero-css',
@@ -70,10 +72,6 @@ add_action('wp_enqueue_scripts', function () {
         }
         return $tag;
     }, 10, 2);
-
-    error_log('TEST HELLO');
-
-    error_log(print_r(aag_hero_config(), true));
 
     // Make config available to JS
     wp_localize_script('aag-hero-js', 'AAGHeroConfig', $cfg);
