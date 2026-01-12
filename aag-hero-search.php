@@ -3,7 +3,7 @@
 /**
  * Plugin Name: AAG Hero Search
  * Description: Reusable Alpine.js hero search + background video component.
- * Version: 1.0.2
+ * Version: 1.0.5
  */
 define('AAG_HERO_PATH', __DIR__);
 define('AAG_HERO_URL', plugin_dir_url(__FILE__));
