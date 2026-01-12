@@ -1,10 +1,13 @@
 // Alpine Search Component Factory
 function aagActivitySearch(items) {
+    // Ensure items is an array
+    const safeItems = Array.isArray(items) ? items : [];
+    
     return {
         query: '',
         filtered: [],
         activeIndex: -1,
-        items: items,
+        items: safeItems,
 
         showAll() {
             this.filtered = this.items;
@@ -45,14 +48,23 @@ function aagActivitySearch(items) {
 
         go(url) {
             // If URL is relative, prepend site URL; if absolute, use as-is
-            const fullUrl = url.startsWith('http://') || url.startsWith('https://') 
-                ? url 
-                : AAGHeroConfig.site_url.replace(/\/$/, '') + url;
-            window.location.href = fullUrl;
+            if (url.startsWith('http://') || url.startsWith('https://')) {
+                window.location.href = url;
+                return;
+            }
+            
+            // Safely get site URL with fallback
+            const siteUrl = (typeof AAGHeroConfig !== 'undefined' && AAGHeroConfig.site_url) 
+                ? AAGHeroConfig.site_url.replace(/\/$/, '') 
+                : window.location.origin;
+            
+            window.location.href = siteUrl + url;
         },
 
         submit() {
-            const fallback = AAGHeroConfig.search_fallback_url;
+            const fallback = (typeof AAGHeroConfig !== 'undefined' && AAGHeroConfig.search_fallback_url)
+                ? AAGHeroConfig.search_fallback_url
+                : '/?s=%query%';
             const q = encodeURIComponent(this.query.trim());
             window.location.href = fallback.replace('%query%', q);
         }
@@ -77,13 +89,19 @@ document.addEventListener('DOMContentLoaded', function () {
     cover.insertBefore(wrapper, inner);
 
     const video  = wrapper.querySelector('.hero-bg-video');
+    if (!video) return;
+    
     const source = video.querySelector('source');
 
-    console.log(AAGHeroConfig);
-
-    // Pull from config.json
-    video.poster = AAGHeroConfig.video_poster;
-    source.src   = AAGHeroConfig.video_src;
+    // Safely pull from config.json with fallbacks
+    if (typeof AAGHeroConfig !== 'undefined') {
+        if (AAGHeroConfig.video_poster) {
+            video.poster = AAGHeroConfig.video_poster;
+        }
+        if (AAGHeroConfig.video_src && source) {
+            source.src = AAGHeroConfig.video_src;
+        }
+    }
 
     // Autoplay-safe attributes
     video.muted = true;

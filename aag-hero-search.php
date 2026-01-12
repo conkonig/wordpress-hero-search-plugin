@@ -62,9 +62,22 @@ add_action('wp_enqueue_scripts', function () {
         'aag-hero-js',
         AAG_HERO_URL . 'assets/front.js',
         ['alpinejs'],
-        '1.0.1',
+        '1.0.5',
         true
     );
+
+    // Prepare config for localization
+    $localized_config = array_merge($cfg, [
+        'site_url' => home_url('/')
+    ]);
+    
+    // Ensure searchable_items exists and is an array
+    if (!isset($localized_config['searchable_items']) || !is_array($localized_config['searchable_items'])) {
+        $localized_config['searchable_items'] = [];
+    }
+    
+    // Localize script - WordPress will output this inline script right before aag-hero-js
+    wp_localize_script('aag-hero-js', 'AAGHeroConfig', $localized_config);
 
     add_filter('script_loader_tag', function ($tag, $handle) {
         if ($handle === 'alpinejs') {
@@ -72,9 +85,4 @@ add_action('wp_enqueue_scripts', function () {
         }
         return $tag;
     }, 10, 2);
-
-    // Make config available to JS
-    wp_localize_script('aag-hero-js', 'AAGHeroConfig', array_merge($cfg, [
-        'site_url' => home_url('/')
-    ]));
 });

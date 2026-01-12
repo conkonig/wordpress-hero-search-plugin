@@ -2,12 +2,14 @@
 
 function aag_hero_item_search_shortcode() {
     $cfg = aag_hero_config();
-    $searchable_items = isset($cfg['searchable_items']) ? $cfg['searchable_items'] : [];
+    $searchable_items = isset($cfg['searchable_items']) && is_array($cfg['searchable_items']) 
+        ? $cfg['searchable_items'] 
+        : [];
 
     ob_start();
 ?>
 <div class="aag-hero-search"
-     x-data='aagActivitySearch(<?php echo json_encode($searchable_items); ?>)'
+     x-data='aagActivitySearch(<?php echo wp_json_encode($searchable_items, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>)'
      @click.outside="filtered = []; activeIndex = -1">
 
     <form class="aag-hero-search-form" role="search" @submit.prevent="submit">
