@@ -74,5 +74,7 @@ add_action('wp_enqueue_scripts', function () {
     }, 10, 2);
 
     // Make config available to JS
-    wp_localize_script('aag-hero-js', 'AAGHeroConfig', $cfg);
+    wp_localize_script('aag-hero-js', 'AAGHeroConfig', array_merge($cfg, [
+        'site_url' => home_url('/')
+    ]));
 });

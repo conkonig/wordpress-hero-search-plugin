@@ -27,10 +27,10 @@ function aag_hero_item_search_shortcode() {
     </form>
 
     <ul class="aag-autocomplete-list" x-show="filtered.length > 0" x-transition>
-        <template x-for="(item, index) in filtered" :key="item.slug">
+        <template x-for="(item, index) in filtered" :key="item.url">
             <li class="aag-autocomplete-item"
                 x-text="item.title"
-                @click="query = item.title; go(item.slug)"
+                @click="query = item.title; go(item.url)"
                 :class="{ 'is-active': index === activeIndex }"
                 @mouseenter="activeIndex = index"></li>
         </template>

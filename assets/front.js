@@ -37,14 +37,18 @@ function aagActivitySearch(items) {
             if (this.activeIndex >= 0 && this.filtered[this.activeIndex]) {
                 const item = this.filtered[this.activeIndex];
                 this.query = item.title;
-                this.go(item.slug);
+                this.go(item.url);
                 return;
             }
             this.submit();
         },
 
-        go(slug) {
-            window.location.href = `/${AAGHeroConfig.taxonomy}/${slug}/`;
+        go(url) {
+            // If URL is relative, prepend site URL; if absolute, use as-is
+            const fullUrl = url.startsWith('http://') || url.startsWith('https://') 
+                ? url 
+                : AAGHeroConfig.site_url.replace(/\/$/, '') + url;
+            window.location.href = fullUrl;
         },
 
         submit() {
